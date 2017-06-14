@@ -13,17 +13,23 @@ cremeURL = "http://bistro.creme.se/meny"
 openURL :: String -> IO String
 openURL url = getResponseBody =<< simpleHTTP (getRequest url)
 
+getId :: Int -> Maybe String
+getId 1 = Just "1316"
+getId 2 = Just "1317"
+getId 3 = Just "1353"
+getId 4 = Just "1354"
+getId 5 = Just "1355"
+getId _ = Nothing
+
 main :: IO ()
 main = do
   src <- openURL cremeURL
   time <- getCurrentTime
   let (_, _, weekday) = toWeekDate $ utctDay time
   let tags = parseTags src
-  putStrLn $ getMenu "1316" tags
-  putStrLn $ getMenu "1317" tags
-  putStrLn $ getMenu "1353" tags
-  putStrLn $ getMenu "1354" tags
-  putStrLn $ getMenu "1355" tags
+  case getId weekday of
+    Just id -> putStrLn $ getMenu id tags
+    Nothing -> putStrLn "No creme today"
   where
     getMenu id =
       unlines .
