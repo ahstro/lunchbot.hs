@@ -14,12 +14,14 @@ openURL :: String -> IO String
 openURL url = getResponseBody =<< simpleHTTP (getRequest url)
 
 getId :: Int -> Maybe String
-getId 1 = Just "1316"
-getId 2 = Just "1317"
-getId 3 = Just "1353"
-getId 4 = Just "1354"
-getId 5 = Just "1355"
-getId _ = Nothing
+getId x =
+  case x of
+    1 -> Just "1316"
+    2 -> Just "1317"
+    3 -> Just "1353"
+    4 -> Just "1354"
+    5 -> Just "1355"
+    _ -> Nothing
 
 main :: IO ()
 main = do
