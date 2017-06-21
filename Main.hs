@@ -16,12 +16,12 @@ openURL url = getResponseBody =<< simpleHTTP (getRequest url)
 getId :: Int -> Maybe String
 getId weekday =
   case weekday of
-    1 -> Just "1316"
-    2 -> Just "1317"
-    3 -> Just "1353"
-    4 -> Just "1354"
-    5 -> Just "1355"
-    _ -> Nothing
+    1 -> Just "1316" -- monday
+    2 -> Just "1317" -- tuesday
+    3 -> Just "1353" -- wednesday
+    4 -> Just "1354" -- thursday
+    5 -> Just "1355" -- friday
+    _ -> Nothing     -- weekends
 
 main :: IO ()
 main = do
