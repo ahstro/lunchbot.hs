@@ -14,8 +14,8 @@ openURL :: String -> IO String
 openURL url = getResponseBody =<< simpleHTTP (getRequest url)
 
 getId :: Int -> Maybe String
-getId x =
-  case x of
+getId weekday =
+  case weekday of
     1 -> Just "1316"
     2 -> Just "1317"
     3 -> Just "1353"
